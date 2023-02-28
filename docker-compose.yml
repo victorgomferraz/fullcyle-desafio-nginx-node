@@ -3,6 +3,7 @@ services:
   app:
     build:
       context: app
+    image: victorgomferraz/desafio-ngnix-node-app
     command: wait-for db:3306 -t 40 -- node index.js
     depends_on:
       - db
@@ -16,6 +17,7 @@ services:
   nginx:
     build:
       context: nginx
+    image: victorgomferraz/desafio-ngnix-node-nginx
     command: wait-for app:3000 -t 40 -- nginx -g 'daemon off;'
     ports:
       - "8080:80"
